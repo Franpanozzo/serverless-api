@@ -1,4 +1,4 @@
-module go-serverless
+module serverless-api
 
 go 1.18
 

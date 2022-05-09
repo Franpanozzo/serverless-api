@@ -3,7 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/Franpanozzo/serverless-api/pkg/handlers"
+	"serverless-api/pkg/handlers"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
