@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 
 	"serverless-api/pkg/handlers"
@@ -30,9 +31,10 @@ func main() {
 
 }
 
-const tableName = "LambdaInGoUser"
+const tableName = "serverless-api"
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
+	log.Printf("Received new request: %v\n", req.HTTPMethod)
 	switch req.HTTPMethod {
 	case "GET":
 		return handlers.GetUser(req, tableName, dynaClient)

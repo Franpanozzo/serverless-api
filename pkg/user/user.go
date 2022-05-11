@@ -28,8 +28,8 @@ var (
 
 type User struct {
 	Email     string `json:"email"`
-	FirstName string `json:"firstName`
-	LastName  string `json:"lastName`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
 }
 
 func FetchUser(email, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*User, error) {
@@ -67,7 +67,10 @@ func FetchUsers(tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*[]User
 	}
 
 	item := new([]User)
-	err = dynamodbattribute.UnmarshalListOfMaps(result.Items, item)
+	if err = dynamodbattribute.UnmarshalListOfMaps(result.Items, item); err != nil {
+		return nil, errors.New(ErrorFailedToUnmarshalRecord)
+	}
+
 	return item, nil
 }
 
